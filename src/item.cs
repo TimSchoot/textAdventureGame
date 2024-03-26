@@ -1,6 +1,6 @@
 class Item{
-	public int Weight { get; }
-	public string Description { get; }
+	public int Weight { get; set; }
+	public string Description { get; set; }
 			
 	// constructor
 	public Item(int weight, string description){

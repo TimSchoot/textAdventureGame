@@ -66,7 +66,7 @@ class Game
 		// ...
 
 		// Start game outside
-		player.CurrentRoom = outside;
+		player.CurrentRoom = pub;
 	}
 
 	//  Main play routine. Loops until end of play.
