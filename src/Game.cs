@@ -60,6 +60,12 @@ class Game
 
 		// Create your Items here
 		
+		Item sword = new Item(6, "a weapon in the form of a rusty sword");
+		Item bible = new Item(2, "holy protection in the form of a bible");
+		Item key = new Item(1, "a key");
+		Item beer = new Item(3, "a beverage in the form of some beer");
+		Item medkit = new Item(3, "healing in the form of a medkit");
+		Item kfcBucket = new Item(4, "some food in the form of a kfc bucket") 
 
 
 		// And add them to the Rooms
