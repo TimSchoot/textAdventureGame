@@ -3,6 +3,8 @@ class Inventory
     private int maxWeight;
     private Dictionary<string, Item> items;
 
+    public Item currentItem;
+
     public Inventory(int maxWeight)
     {
         this.maxWeight = maxWeight;
@@ -38,13 +40,13 @@ class Inventory
             return null;
         }
 
-        // currentItem = this.items[itemName];
+        currentItem = this.items[itemName];
 
-        // if (currentItem != null)
-        // {
-        //     this.items.Remove(itemName);
-        //     return currentItem;
-        // }
+        if (currentItem != null)
+        {
+            this.items.Remove(itemName);
+            return currentItem;
+        }
 
         // return Item or null 
         return null;
