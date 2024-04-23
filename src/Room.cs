@@ -73,6 +73,7 @@ class Room
 	private Inventory chest;
 	public Inventory Chest{
 		get {return chest;}
+		
 	}
 	public Room(){
 		chest = new Inventory(999999);

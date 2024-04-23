@@ -39,7 +39,7 @@ class Player{
 
         // methods
        public bool TakeFromChest(string itemName)
-    {
+        {
         if (CurrentRoom != null)
         {
             // Get the item from the room

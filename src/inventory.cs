@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-
-
-
 class Inventory
 {
     private int maxWeight;
@@ -16,47 +9,45 @@ class Inventory
         this.items = new Dictionary<string, Item>();
     }
 
+
+    
+
     public bool Put(string itemName, Item item)
     {
-        // Preconditions
-        Contract.Requires(!string.IsNullOrEmpty(itemName));
-        Contract.Requires(item != null);
-
-        // Check if the item already exists
-        if (items.ContainsKey(itemName))
-            return false; // Item with the same name already exists
-
-        // Check if adding this item will exceed the maximum weight
-        int totalWeight = TotalWeight() + item.Weight;
-        if (totalWeight > maxWeight)
-            return false; // Adding this item will exceed the maximum weight
-
-        // Add the item to the inventory
-        items[itemName] = item;
-
-        // Postconditions
-        Contract.Ensures(Contract.Result<bool>() == (items.ContainsKey(itemName)));
-
-        return true;
-    }
-
-    public Item Get(string itemName)
-    {
-        // Preconditions
-        Contract.Requires(!string.IsNullOrEmpty(itemName));
-
-        // Check if the item exists in the inventory
-        if (items.TryGetValue(itemName, out Item item))
+        // TODO implement:
+        // Check the Weight of the Item and check for enough space in the Inventory. Does the Item fit?
+        if(item.Weight > FreeWeight())
         {
-            // Remove the item from the inventory
-            items.Remove(itemName);
-            return item;
+            // Console.WriteLine("Your item doesn't fit in the backpack.");
+            return false;
         }
 
-        // Postconditions
-        Contract.Ensures(Contract.Result<Item>() == null || !items.ContainsKey(itemName));
+        // Put Item in the items Dictionary
+        this.items.Add(itemName, item);
 
-        return null; // Item not found
+        // Return true/false for success/failure
+        return true;
+    }
+    public Item Get(string itemName){
+        // TODO implement:
+        // Find Item in items Dictionary. remove Item from items Dictionary if found
+
+        if(!this.items.ContainsKey(itemName))
+        {
+            Console.WriteLine("Item doesn't excist in this current world.");
+            return null;
+        }
+
+        // currentItem = this.items[itemName];
+
+        // if (currentItem != null)
+        // {
+        //     this.items.Remove(itemName);
+        //     return currentItem;
+        // }
+
+        // return Item or null 
+        return null;
     }
 
     public int TotalWeight()
