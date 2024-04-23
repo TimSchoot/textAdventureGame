@@ -1,5 +1,6 @@
 using System;
 using System.Security;
+using System.Security.AccessControl;
 
 class Game
 {
@@ -70,8 +71,13 @@ class Game
 
 		// And add them to the Rooms
 		bedroom.Chest.Put("Key", key);
+		kitchen.Chest.Put("sword", sword);
+		lab.Chest.Put("bible", bible);
+		pub.Chest.Put("beer", beer);
+		office.Chest.Put("medkit", medkit);
+		theatre.Chest.Put("kfc bucket", kfcBucket);		
 
-		// Start game outside
+		// Start game outside(Nuh-uhhh)
 		player.CurrentRoom = pub;
 	}
 
@@ -137,6 +143,15 @@ public void Play()
 			case "status":
 				Console.WriteLine(player.showStatus());
 				break;
+			case "look":
+				Look();
+				break;
+			case "take":
+				Take(command);
+				break;
+			case "drop":
+				Drop(command);
+				break;
 			case "quit":
 				wantToQuit = true;
 				break;
@@ -184,5 +199,22 @@ public void Play()
 		player.CurrentRoom = nextRoom;
 		player.Damage(40);
 		Console.WriteLine(player.CurrentRoom.GetLongDescription());
+	}
+	private void Look(){
+		Console.WriteLine(player.CurrentRoom.GetLongDescription());
+	}
+	private void Take(Command command){
+		if(!command.HasSecondWord()){
+			Console.WriteLine("what do you want to pick up");
+			return;
+		}
+		player.TakeFromChest(command.SecondWord);
+	}
+	private void Drop(Command command){
+		if(!command.HasSecondWord()){
+			Console.WriteLine("what do you want to drop");
+			return;
+			}
+		player.DropToChest(command.SecondWord);
 	}
 }
