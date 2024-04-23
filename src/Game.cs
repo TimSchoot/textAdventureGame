@@ -197,7 +197,7 @@ public void Play()
 		}
 
 		player.CurrentRoom = nextRoom;
-		player.Damage(40);
+		player.Damage(5);
 		Console.WriteLine(player.CurrentRoom.GetLongDescription());
 	}
 	private void Look(){

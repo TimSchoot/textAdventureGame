@@ -43,6 +43,7 @@ class Room
 		str += description;
 		str += ".\n";
 		str += GetExitString();
+		str += ".\n\n" + Chest.showItem();
 		return str;
 	}
 

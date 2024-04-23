@@ -63,4 +63,12 @@ class Inventory
         int freeWeight = maxWeight - TotalWeight();
         return freeWeight;
     }
+    public string showItem(){
+        string nameList = "";
+        foreach(KeyValuePair<string, Item> entry in items)
+        {
+            nameList += entry.Key+"\n"+entry.Value.Weight+"KG\n"+entry.Value.Description+"\n\n";
+        }
+        return nameList;
+    }
 }
