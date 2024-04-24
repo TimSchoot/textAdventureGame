@@ -2,16 +2,25 @@ class Player{
 
     public string showStatus(){
         string str = "your health is " + this.health;
+        str += "\n backpack: \n" + this.backpack.showItem();
         return str;
     }
 
     public int Damage(int injury){
         this.health = this.health - injury;
+        if(health < 0){
+            this.health = 0;
+        }
         return this.health;
     }
     public int Heal(int amount){
         this.health = this.health + amount;
+        if(health > 100)
+        {
+            this.health = 100;
+        }
         return this.health;
+        
     }
     public bool IsAlive(){
         if(health < 1){
@@ -35,11 +44,24 @@ class Player{
 
         // 25kg is pretty heavy to carry around all day.
         backpack = new Inventory(25);
-        }
+    }
 
         // methods
-       public bool TakeFromChest(string itemName)
+
+    public void Use(string itemName){
+        if(this.backpack.Get(itemName) == null)
         {
+            Console.WriteLine("nuh-uhhh");
+            return;
+        }
+        if(itemName == "medkit")
+        {
+            this.Heal(30);
+            Console.WriteLine("you've used a medkit.");
+        }
+    }
+    public bool TakeFromChest(string itemName)
+    {
         if (CurrentRoom != null)
         {
             // Get the item from the room

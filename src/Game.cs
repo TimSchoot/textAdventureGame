@@ -70,7 +70,7 @@ class Game
 
 
 		// And add them to the Rooms
-		bedroom.Chest.Put("Key", key);
+		bedroom.Chest.Put("key", key);
 		kitchen.Chest.Put("sword", sword);
 		lab.Chest.Put("bible", bible);
 		pub.Chest.Put("beer", beer);
@@ -155,6 +155,9 @@ public void Play()
 			case "quit":
 				wantToQuit = true;
 				break;
+			case "use":
+				UseItem(command);
+				break;
 		}
 
 		return wantToQuit;
@@ -216,5 +219,14 @@ public void Play()
 			return;
 			}
 		player.DropToChest(command.SecondWord);
+	}
+	private void UseItem(Command command){
+		if(!command.HasSecondWord())
+		{
+			Console.WriteLine("what item do you want to use?");
+			return;
+		}
+		Console.WriteLine(command.SecondWord);
+		player.Use(command.SecondWord);
 	}
 }
