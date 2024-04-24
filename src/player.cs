@@ -57,7 +57,12 @@ class Player{
         if(itemName == "medkit")
         {
             this.Heal(30);
-            Console.WriteLine("you've used a medkit.");
+            Console.WriteLine("you've used a medkit got 30 extra health.");
+        }
+        if(itemName == "beer")
+        {
+            this.Damage(10);
+            Console.WriteLine("you have drank a beer and taken 10 damage");
         }
     }
     public bool TakeFromChest(string itemName)
